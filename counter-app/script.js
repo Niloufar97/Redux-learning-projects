@@ -34,13 +34,17 @@ const resetAction = {type: 'RESET'}
 // dispatch
 increaseButton.addEventListener('click' , () =>{
     store.dispatch(incrementAction)
-    console.log(store.getState())
 })
 decreaseButton.addEventListener('click' , () =>{
     store.dispatch(decrementAction)
-    console.log(store.getState())
 })
 resetButton.addEventListener('click' , () =>{
     store.dispatch(resetAction)
-    console.log(store.getState())
 })
+
+const renderUI = () => {
+    result.innerHTML = store.getState()
+}
+renderUI()
+// subscribe
+store.subscribe(renderUI)
