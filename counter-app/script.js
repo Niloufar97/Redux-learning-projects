@@ -1,4 +1,5 @@
 import * as Redux from './node_modules/redux/dist/redux.browser.mjs'
+import { incActionCreator, decActionCreator, resetActionCreator } from './Redux/actionCreator.js';
 
 const increaseButton = document.getElementById("increaseBtn");
 const decreaseButton = document.getElementById("decreaseBtn");
@@ -26,20 +27,16 @@ const counterReducer = (state = 0 , action) => {
 // create store
 const store = Redux.createStore(counterReducer);
 
-// create actions
-const incrementAction = {type: 'INCREMENT'};
-const decrementAction = {type: 'DECREMENT'};
-const resetAction = {type: 'RESET'}
 
 // dispatch
 increaseButton.addEventListener('click' , () =>{
-    store.dispatch(incrementAction)
+    store.dispatch(incActionCreator())
 })
 decreaseButton.addEventListener('click' , () =>{
-    store.dispatch(decrementAction)
+    store.dispatch(decActionCreator())
 })
 resetButton.addEventListener('click' , () =>{
-    store.dispatch(resetAction)
+    store.dispatch(resetActionCreator())
 })
 
 const renderUI = () => {
