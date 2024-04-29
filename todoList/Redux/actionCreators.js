@@ -1,4 +1,4 @@
-import { addTodoAction, completeTodoAction, removeTodoAction } from "./actionTypes"
+import { addTodoAction, completeTodoAction, removeTodoAction } from "./actionTypes.js"
 export const addTodoCreator = (title) => {
     return(
         {
