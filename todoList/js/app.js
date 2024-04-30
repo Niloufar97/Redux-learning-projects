@@ -1,4 +1,4 @@
-import { addTodoCreator } from "../Redux/actionCreators.js";
+import { addTodoCreator , completeTodoCreator, removeTodoCreator } from "../Redux/actionCreators.js";
 import {
   addTodoAction,
   completeTodoAction,
@@ -21,8 +21,18 @@ const todoReducer = (state = [], action) => {
       return newState;
     }
     case completeTodoAction: {
+      const newState = [...state]
+      newState.forEach(todo => {
+        if(todo.id === action.id){
+          todo.completed = !todo.completed
+        }
+      })
+      return newState
     }
     case removeTodoAction: {
+      const newState = [...state]
+      const filteredTodos = newState.filter(todo => todo.id != action.id)
+      return filteredTodos
     }
     default: {
       return state;
@@ -47,10 +57,16 @@ window.addEventListener("keydown", (e) => {
   e.key == "Enter" && todoInput.value != "" && addNewTodoFunction();
 });
 
-const generateTodoElement = (title) => {
-  return `<div class="todoItem">
+const completeTodoHandler = (id) =>{
+  store.dispatch(completeTodoCreator(id))
+}
+const removeTodoHandler = (id) => {
+  store.dispatch(removeTodoCreator(id))
+}
+const generateTodoElement = (title , id , completed) => {
+  return `<div class="todoItem ${completed ? "completed" : ""}" onclick=completeTodoHandler(${id})>
             <span>${title}</span>
-            <span class="material-symbols-outlined"> delete </span>
+            <span class="material-symbols-outlined" onclick=removeTodoHandler(${id})> delete </span>
         </div>`;
 };
 
@@ -62,8 +78,10 @@ window.addEventListener("load", () => {
 const renderUI = () => {
     let todos = store.getState();
     todoItemContainer.innerHTML = ""
-    todos.map(todo =>  todoItemContainer.insertAdjacentHTML('beforeend', generateTodoElement(todo.title)))
+    todos.map(todo =>  todoItemContainer.insertAdjacentHTML('beforeend', generateTodoElement(todo.title, todo.id, todo.completed)))
    
 }
 renderUI()
 store.subscribe(renderUI);
+window.completeTodoHandler = completeTodoHandler
+window.removeTodoHandler = removeTodoHandler
