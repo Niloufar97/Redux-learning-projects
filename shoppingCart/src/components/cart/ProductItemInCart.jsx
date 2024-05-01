@@ -1,18 +1,19 @@
+/* eslint-disable react/prop-types */
+import { useContext } from "react";
 import "./ProductItemInCart.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { AppContext } from "../../context/AppContext";
 
 function ProductItemInCart({
   id,
   name,
-  price,
   image,
   count,
   totalPrice,
-  addedProducts,
-  setAddedProducts,
-  addedToCart,
-  setAddedToCart
 }) {
+
+  const { addedProducts, setAddedProducts, addedToCart, setAddedToCart} = useContext(AppContext)
+
   const decreaseHandler = () => {
     const updateAddedProducts = [...addedProducts];
     updateAddedProducts.map((product) => {
