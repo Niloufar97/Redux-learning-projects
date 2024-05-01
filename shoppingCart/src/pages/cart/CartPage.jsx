@@ -1,12 +1,24 @@
-import Navbar from "../../components/navbar/Navbar"
+/* eslint-disable react/prop-types */
+import Cart from "../../components/cart/Cart";
+import Navbar from "../../components/navbar/Navbar";
 
-function CartPage() {
+function CartPage({
+  addedToCart,
+  setAddedToCart,
+  addedProducts,
+  setAddedProducts,
+}) {
   return (
-    <div>
-        <Navbar/>
-      <h1>cart page</h1>
-    </div>
-  )
+    <>
+      <Navbar addedToCart={addedToCart} />
+      <Cart
+        addedToCart={addedToCart}
+        setAddedToCart={setAddedToCart}
+        addedProducts={addedProducts}
+        setAddedProducts={setAddedProducts}
+      />
+    </>
+  );
 }
 
-export default CartPage
+export default CartPage;
