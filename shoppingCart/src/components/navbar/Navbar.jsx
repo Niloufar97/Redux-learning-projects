@@ -1,17 +1,18 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import "./Navbar.css";
 import { BsCart4 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-function Navbar() {
-  const [addedToCart, setAddedToCart] = useState(3);
+function Navbar({addedToCart , setAddedToCart}) {
+  
   return (
     <nav>
       <p>
-        <Link to="/">Home</Link>
+        <Link to="/">home</Link>
       </p>
       <p className="bag">
-        <Link to="/cart">
+        <Link to='/cart'>
           <BsCart4 color="white" size="30px" />
         </Link>
         {addedToCart > 0 && <span>{addedToCart}</span>}
