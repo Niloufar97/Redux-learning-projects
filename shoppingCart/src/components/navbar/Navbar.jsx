@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
 function Navbar() {
-  const {addedToCart} = useContext(AppContext)
+  const {addedToCart} = useContext(AppContext).state
   return (
     <nav>
       <p>
