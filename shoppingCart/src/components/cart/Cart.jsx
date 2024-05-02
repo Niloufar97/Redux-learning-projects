@@ -5,7 +5,7 @@ import ProductItemInCart from "./ProductItemInCart";
 import { useContext } from "react";
 
 function Cart() {
-  const {addedToCart, addedProducts} = useContext(AppContext);
+  const {addedToCart, addedProducts} = useContext(AppContext).state;
   return (
     <div className="cartContainer">
       {addedToCart > 0 ? (

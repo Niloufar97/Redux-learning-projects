@@ -26,13 +26,31 @@ const reducer = (state, action) => {
       return newState;
     }
     case "INCREASE_IN_CART": {
-      // CODE
+      const newState = {...state}
+      newState.addedProducts.map(product =>{
+        if(product.id === action.id){
+          product.count +=1;
+          product.price = product.count * product.price
+        }
+      })
+      return newState;
     }
     case "DECREASE_IN_CART": {
-      //
+      const newState ={...state};
+      newState.addedProducts.map(product => {
+        if(product.id === action.id){
+          product.count -=1;
+          product.price = product.count * product.price
+        }
+      })
+      return newState;
     }
     case "REMOVE_FROM_CART": {
-      //
+      const newState ={...state};
+      const updated = newState.addedProducts.filter(product => product.id !== action.id)
+      newState.addedProducts = updated
+      newState.addedToCart -=1
+      return newState
     }
   }
 };

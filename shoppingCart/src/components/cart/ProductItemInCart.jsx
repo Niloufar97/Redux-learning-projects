@@ -12,33 +12,17 @@ function ProductItemInCart({
   totalPrice,
 }) {
 
-  const { addedProducts, setAddedProducts, addedToCart, setAddedToCart} = useContext(AppContext)
+  const {dispatch} = useContext(AppContext)
 
   const decreaseHandler = () => {
-    const updateAddedProducts = [...addedProducts];
-    updateAddedProducts.map((product) => {
-      if (product.id == id) {
-        product.count -= 1;
-        product.totalPrice = product.count * product.price;
-        setAddedProducts(updateAddedProducts);
-      }
-    });
+    dispatch({type:'DECREASE_IN_CART' , id})
   };
   const increaseHandler = () => {
-    const updateAddedProducts = [...addedProducts];
-    updateAddedProducts.map((product) => {
-      if (product.id == id) {
-        product.count += 1;
-        product.totalPrice = product.count * product.price;
-        setAddedProducts(updateAddedProducts);
-      }
-    });
+    dispatch({type:'INCREASE_IN_CART' , id})
   };
 
   const removeFromCartHandler = () => {
-    const updateAddedProducts = addedProducts.filter(product => product.id !== id)
-    setAddedProducts(updateAddedProducts)
-    setAddedToCart(addedToCart - 1)
+    dispatch({type:"REMOVE_FROM_CART" , id})
   }
 
   return (
