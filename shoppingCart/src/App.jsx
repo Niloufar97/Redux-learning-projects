@@ -3,22 +3,20 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import CartPage from "./pages/cart/CartPage";
-import AppProvider from "./context/AppContext";
-
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
-
-
   return (
     <>
-      <BrowserRouter>
-        <AppProvider>
+      <Provider store={store}>
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
           </Routes>
-          </AppProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }

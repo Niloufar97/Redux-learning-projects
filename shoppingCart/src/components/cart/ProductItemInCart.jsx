@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
 import "./ProductItemInCart.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AppContext } from "../../context/AppContext";
+import { useDispatch } from "react-redux";
 
 function ProductItemInCart({
   id,
@@ -12,7 +11,7 @@ function ProductItemInCart({
   totalPrice,
 }) {
 
-  const {dispatch} = useContext(AppContext)
+  const dispatch = useDispatch()
 
   const decreaseHandler = () => {
     dispatch({type:'DECREASE_IN_CART' , id})

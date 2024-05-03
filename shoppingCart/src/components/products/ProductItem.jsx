@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
+import { useDispatch } from "react-redux";
 import "./ProductItem.css";
-import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
+// import { useContext } from "react";
+// import { AppContext } from "../../context/AppContext";
 
 function ProductItem( data ) {
   const { name,price,image,} = data;
 
-  const { dispatch } = useContext(AppContext);
+  // const { dispatch } = useContext(AppContext);
+  const dispatch = useDispatch()
 
   const addToCartHandler = () => {
     dispatch({type : 'ADD_TO_CART' , data})
