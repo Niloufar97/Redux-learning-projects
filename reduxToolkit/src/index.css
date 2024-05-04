@@ -67,3 +67,8 @@ form {
   color: whitesmoke;
   font-size: 1rem;
 }
+.post-card{
+  border: 1px solid white;
+  margin: 1rem;
+  padding: 0.5rem;
+}
