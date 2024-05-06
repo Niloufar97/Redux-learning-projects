@@ -1,5 +1,6 @@
 import {useSelector} from 'react-redux'
 import { AllPostsSelector } from './postsSlice'
+import PostAuthor from './PostAuthor'
 
 function PostList () {
     const posts = useSelector(AllPostsSelector)
@@ -8,6 +9,7 @@ function PostList () {
             <div key={post.id} className='post-card'>
                 <h3>{post.title}</h3>
                 <p>{post.content}</p>
+                <p>by <PostAuthor userId={post.userId}/></p>
             </div>
         ))
         return myposts

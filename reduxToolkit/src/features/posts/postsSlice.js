@@ -5,8 +5,9 @@ const initialState = [
     id: 1,
     title: "iredux toolkit",
     content: "It is time to practice this topic",
+    userId: 1
   },
-  { id: 2, title: "Rtk Query", content: "It is your next step" },
+  { id: 2, title: "Rtk Query", content: "It is your next step", userId:3 },
 ];
 
 const postsSlice = createSlice({
@@ -17,12 +18,13 @@ const postsSlice = createSlice({
       reducer(state, action) {
         state.push(action.payload);
       },
-      prepare(title, content) {
+      prepare(title, content, userId) {
         return {
           payload: {
             id: nanoid(),
             title,
             content,
+            userId
           },
         };
       },
